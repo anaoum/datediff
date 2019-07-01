@@ -21,15 +21,13 @@ class DateDiffTest(unittest.TestCase):
             expected = abs(expected.days)
             if expected != 0:
                 expected -= 1
+        if symmetrical:
+            self._test(date2, date1, expected, False)
         date1 = date1.strftime("%d/%m/%Y")
         date2 = date2.strftime("%d/%m/%Y")
         actual = datediff(date1, date2, "DD/MM/YYYY")
         self.assertEqual(actual, expected, \
                 msg="{}–{} should be {}".format(date1, date2, expected))
-        if symmetrical:
-            actual = datediff(date2, date1, "DD/MM/YYYY")
-            self.assertEqual(actual, expected, \
-                    msg="{}–{} should be {}".format(date2, date1, expected))
 
     # Problem description
     def test_eg1(self):
